@@ -2,6 +2,9 @@
 import Experience from "./Experience.astro";
 import Link from "../Link.astro";
 const experience = await Astro.glob("../../data/experience/*.md");
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/experience-logos/*",
+);
 ---
 
 <div class="flex flex-col gap-2">
@@ -31,21 +34,27 @@ const experience = await Astro.glob("../../data/experience/*.md");
             new Date(b.frontmatter.start_date).valueOf() -
             new Date(a.frontmatter.start_date).valueOf(),
         )
-        .map((exp, idx) => (
-          <>
-            {idx != 0 && (
-              <div class="h-0 w-full border-b border-blue-300 border-dashed" />
-            )}
-            <Experience
-              start={exp.frontmatter.start_date}
-              end={exp.frontmatter.end_date}
-              jobTitle={exp.frontmatter.role}
-              company={exp.frontmatter.company}
-              description={exp.frontmatter.summary}
-              iconUrl={exp.frontmatter.iconUrl}
-            />
-          </>
-        ))
+        .map(async (exp, idx) => {
+          const image =
+            await images[
+              `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
+            ]();
+          return (
+            <>
+              {idx != 0 && (
+                <div class="h-0 w-full border-b border-blue-300 border-dashed" />
+              )}
+              <Experience
+                start={exp.frontmatter.start_date}
+                end={exp.frontmatter.end_date}
+                jobTitle={exp.frontmatter.role}
+                company={exp.frontmatter.company}
+                description={exp.frontmatter.summary}
+                icon={image.default}
+              />
+            </>
+          );
+        })
     }
   </div>
 </div>

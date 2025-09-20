@@ -1,5 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 type Props = HTMLAttributes<"div"> & {
   start: string;
@@ -7,7 +9,7 @@ type Props = HTMLAttributes<"div"> & {
   jobTitle: string;
   company: string;
   description: string;
-  iconUrl: string;
+  icon: ImageMetadata;
 };
 
 const {
@@ -16,7 +18,7 @@ const {
   jobTitle,
   company,
   description,
-  iconUrl,
+  icon,
   class: className,
   ...props
 } = Astro.props;
@@ -28,10 +30,12 @@ const {
 >
   <div class="flex flex-col md:flex-row gap-2 w-full md:items-center">
     <div class="flex w-[40px] h-[40px] items-center justify-center shrink-0">
-      <img
-        src={`/experience-logos/${iconUrl}`}
+      <Image
+        src={icon}
         alt={company}
         class="w-full h-full object-cover"
+        width={40}
+        height={40}
       />
     </div>
     <div class="flex flex-col w-full">
