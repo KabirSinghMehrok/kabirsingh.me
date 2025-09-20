@@ -59,6 +59,15 @@ const InteractiveImagesComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // This effect runs once on mount, after the JS is loaded.
+    // It signals to the parent Astro component that it's ready.
+    const wrapper = document.getElementById("interactive-images-wrapper");
+    if (wrapper) {
+      wrapper.setAttribute("data-loaded", "true");
+    }
+  }, []);
+
+  useEffect(() => {
     const checkVisibility = () => {
       setIsVisible(window.innerWidth >= 1080);
     };
