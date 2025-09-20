@@ -7,13 +7,19 @@ const project = await Astro.glob("../../data/projects/*.md");
   <h2 class="text-[40px] source-serif-4-light-italic leading-none">
     ...and on some amazing projects
   </h2>
-  <div class="flex flex-col border border-blue-300 border-dashed">
+  <div class="relative flex flex-col border border-[#3b82f6]">
+    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
     {
       project.map((exp, idx) => (
         <>
-          {idx != 0 && (
-            <div class="h-0 w-full border-b border-blue-300 border-dashed" />
-          )}
+          {/* {idx != 0 && (
+            <div class="w-full h-4">
+              <div class="h-0.5 max-w-[40px] bg-[#c93486] border border-white mx-auto" />
+            </div>
+          )} */}
           <Project
             title={exp.frontmatter.title}
             tagline={exp.frontmatter.tagline}
