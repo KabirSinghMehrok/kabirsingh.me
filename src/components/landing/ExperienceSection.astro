@@ -1,0 +1,51 @@
+---
+import Experience from "./Experience.astro";
+import Link from "../Link.astro";
+const experience = await Astro.glob("../../data/experience/*.md");
+---
+
+<div class="flex flex-col gap-2">
+  <div class="flex flex-col mb-8">
+    <h2 class="text-[40px] source-serif-4-light-italic leading-none">
+      I've worked at amazing places
+    </h2>
+    <p class="'text-[15px] text-slate-500">
+      Help me expand this list, reach me out on
+      <Link href="mailto:mehrok.kabir.singh@gmail.com" fontSize="20px">
+        email
+      </Link>
+      or
+      <Link
+        href="https://www.linkedin.com/in/kabirsinghmehrok/"
+        fontSize="20px"
+      >
+        linkedin
+      </Link>
+    </p>
+  </div>
+  <div class="flex flex-col border border-blue-300 border-dashed">
+    {
+      experience
+        .sort(
+          (a, b) =>
+            new Date(b.frontmatter.start_date).valueOf() -
+            new Date(a.frontmatter.start_date).valueOf(),
+        )
+        .map((exp, idx) => (
+          <>
+            {idx != 0 && (
+              <div class="h-0 w-full border-b border-blue-300 border-dashed" />
+            )}
+            <Experience
+              start={exp.frontmatter.start_date}
+              end={exp.frontmatter.end_date}
+              jobTitle={exp.frontmatter.role}
+              company={exp.frontmatter.company}
+              description={exp.frontmatter.summary}
+              iconUrl={exp.frontmatter.iconUrl}
+            />
+          </>
+        ))
+    }
+  </div>
+</div>

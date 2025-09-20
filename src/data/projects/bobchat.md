@@ -1,0 +1,21 @@
+---
+title: "Bobchat"
+tagline: "A real-time chat application developed using websockets."
+status: "Completed"
+iconEmoji: '💬'
+technologies: ["User Interface Design", "Node.js", "SQL", "Full-Stack Development", "React.js", "MySQL", "HTML5"] 
+role: "Developer"
+github_url: ""
+live_url: ""
+---
+
+### Overview
+Bobchat is a real-time chat application that allows for one-to-one and group messaging with a toggleable read-receipt feature.
+
+### Key Features
+- **Messaging:** Supports one-to-one and group messaging.
+- **Read-Receipts:** Includes a toggleable read-receipt feature.
+
+### Technical Details & Learning
+- **Database:** An ER model was created for the database and implemented using MySQL.
+- **Development Stack:** The application was built using websockets, Node.js, and React.js.

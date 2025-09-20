@@ -1,0 +1,54 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Link from "../Link.astro";
+
+type Props = HTMLAttributes<"div"> & {
+  title: string;
+  tagline: string;
+  imageUrl: string;
+  github_url: string;
+  live_url: string;
+  role: string;
+  status: string;
+  iconEmoji: string;
+  technologies: string[];
+};
+
+const {
+  title,
+  tagline,
+  imageUrl,
+  github_url,
+  live_url,
+  class: className,
+  iconEmoji,
+  ...props
+} = Astro.props;
+---
+
+<div
+  class="flex flex-col md:flex-row md:justify-between gap-1 px-3 py-2"
+  {...props}
+>
+  <div class="flex flex-col md:flex-row gap-2 w-full">
+    <div
+      class="w-[50px] h-[50px] shrink-0 text-[40px] flex items-center justify-center"
+    >
+      {iconEmoji}
+    </div>
+    <div class="flex flex-col w-full">
+      <div class="flex md:flex-row justify-between gap-2 flex-grow">
+        <p class="text-[18px] font-sans font-medium source-sans-3-bold">
+          {title}
+        </p>
+        <div class="flex flex-row gap-2 shrink-0">
+          <Link href={github_url}>github</Link>
+          {live_url && <Link href={live_url}>live link</Link>}
+        </div>
+      </div>
+      <p class="text-[15px] font-sans font-light source-sans-3-light">
+        {tagline}
+      </p>
+    </div>
+  </div>
+</div>

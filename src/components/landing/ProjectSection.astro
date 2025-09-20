@@ -1,0 +1,32 @@
+---
+import Project from "./Project.astro";
+const project = await Astro.glob("../../data/projects/*.md");
+---
+
+<div class="flex flex-col gap-2">
+  <h2 class="text-[40px] source-serif-4-light-italic leading-none">
+    ...and on some amazing projects
+  </h2>
+  <div class="flex flex-col border border-blue-300 border-dashed">
+    {
+      project.map((exp, idx) => (
+        <>
+          {idx != 0 && (
+            <div class="h-0 w-full border-b border-blue-300 border-dashed" />
+          )}
+          <Project
+            title={exp.frontmatter.title}
+            tagline={exp.frontmatter.tagline}
+            github_url={exp.frontmatter.github_url}
+            live_url={exp.frontmatter.live_url}
+            imageUrl={exp.frontmatter.imageUrl}
+            status={exp.frontmatter.status}
+            technologies={exp.frontmatter.technologies}
+            role={exp.frontmatter.role}
+            iconEmoji={exp.frontmatter.iconEmoji}
+          />
+        </>
+      ))
+    }
+  </div>
+</div>

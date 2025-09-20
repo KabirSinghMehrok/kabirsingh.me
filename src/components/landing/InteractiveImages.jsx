@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import interact from 'interactjs';
 
 
@@ -54,26 +54,84 @@ const emojiArray = [
   }
 ];
 
-const InteractiveImagesComponent = ({ numberOfImages = 5 }) => {
+const InteractiveImagesComponent = () => {
   const containerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const checkVisibility = () => {
+      setIsVisible(window.innerWidth >= 1080);
+    };
+
+    checkVisibility(); // Check on initial render
+    window.addEventListener('resize', checkVisibility);
+
+    return () => {
+      window.removeEventListener('resize', checkVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const container = containerRef.current;
     if (!container) return;
 
     function randomizePositions() {
       const items = container.querySelectorAll('.resizable-draggable');
       const containerRect = container.getBoundingClientRect();
+      if (items.length === 0) return;
 
-      items.forEach(item => {
-        const itemRect = item.getBoundingClientRect();
-        const x = Math.random() * (containerRect.width - itemRect.width);
-        const y = Math.random() * (containerRect.height - itemRect.height);
+      // Set the size of the center element
+      const centerItem = items[0];
+      const centerSize = 150;
+      centerItem.style.width = `${centerSize}px`;
+      centerItem.style.height = `${centerSize}px`;
 
-        item.style.transform = `translate(${x}px, ${y}px)`;
-        item.setAttribute('data-x', String(x));
-        item.setAttribute('data-y', String(y));
-      });
+      // Place the first item (center)
+      const centerX = (containerRect.width / 2) - (centerSize / 2);
+      const centerY = (containerRect.height / 2) - (centerSize / 2);
+      centerItem.style.transform = `translate(${centerX}px, ${centerY}px)`;
+      centerItem.setAttribute('data-x', String(centerX));
+      centerItem.setAttribute('data-y', String(centerY));
+
+      const otherItems = Array.from(items).slice(1);
+      const sizes = [100, 100, 100, 100]; // Sizes for the next four items
+      const defaultSize = 50; // Size for all subsequent items
+
+      let ringRadius = 150; // Initial radius of the first ring
+      let itemsInRing = 4; // Number of items in the first ring
+      let currentItemIndex = 0;
+
+      while (currentItemIndex < otherItems.length) {
+        const angleStep = (2 * Math.PI) / itemsInRing;
+        for (let i = 0; i < itemsInRing && currentItemIndex < otherItems.length; i++) {
+          const item = otherItems[currentItemIndex];
+          const itemSize = sizes[currentItemIndex] || defaultSize;
+
+          item.style.width = `${itemSize}px`;
+          item.style.height = `${itemSize}px`;
+
+          const angle = i * angleStep + (Math.random() - 0.5) * 0.5;
+          const radiusOffset = ringRadius + (Math.random() - 0.5) * 50;
+
+          let x = centerX + radiusOffset * Math.cos(angle);
+          let y = centerY + radiusOffset * Math.sin(angle);
+
+          // Ensure the item stays within the container's bounds
+          x = Math.max(0, Math.min(x, containerRect.width - itemSize));
+          y = Math.max(0, Math.min(y, containerRect.height - itemSize));
+
+          item.style.transform = `translate(${x}px, ${y}px)`;
+          item.setAttribute('data-x', String(x));
+          item.setAttribute('data-y', String(y));
+
+          currentItemIndex++;
+        }
+
+        ringRadius += 100;
+        itemsInRing += 3;
+      }
     }
 
     function dragMoveListener(event) {
@@ -137,7 +195,11 @@ const InteractiveImagesComponent = ({ numberOfImages = 5 }) => {
     return () => {
       interaction.unset();
     };
-  }, [numberOfImages]);
+  }, [isVisible]);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div
