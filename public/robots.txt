@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kabirsingh.me/sitemap-index.xml
