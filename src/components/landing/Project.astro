@@ -22,6 +22,7 @@ const {
   live_url,
   class: className,
   iconEmoji,
+  technologies,
   ...props
 } = Astro.props;
 ---
@@ -42,13 +43,22 @@ const {
           {title}
         </p>
         <div class="flex flex-row gap-2 shrink-0">
-          <Link href={github_url}>github</Link>
+          {github_url && <Link href={github_url}>github</Link>}
           {live_url && <Link href={live_url}>live link</Link>}
         </div>
       </div>
-      <p class="text-[15px] font-sans font-light source-sans-3-light">
+      <p class="text-[15px] source-sans-3-light">
         {tagline}
       </p>
+      <div class="flex flex-row gap-1 flex-wrap">
+        {
+          technologies.map((technology) => (
+            <p class="border border-slate-300 leading-6 py-0 px-2 rounded-sm text-[12px] source-sans-3-light truncate">
+              {technology}
+            </p>
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>

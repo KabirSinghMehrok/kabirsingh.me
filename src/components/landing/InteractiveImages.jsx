@@ -213,7 +213,7 @@ const InteractiveImagesComponent = () => {
             <source srcSet={emoji.webpLink} type="image/webp" />
             <img
               src={emoji.gifLink}
-              alt={emoji.altEmoji}
+              alt={emoji.ariaLabel}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </picture>

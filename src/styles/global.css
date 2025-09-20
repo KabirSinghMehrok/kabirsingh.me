@@ -158,6 +158,10 @@ hr {
     font-size: 18px;
   }
 
+  header {
+    padding: 1em;
+  }
+
   main {
     padding: 1em;
   }

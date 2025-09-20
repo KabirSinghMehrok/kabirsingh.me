@@ -3,9 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/landing/Hero.astro";
 import ExperienceSection from "../components/landing/ExperienceSection.astro";
 import ProjectSection from "../components/landing/ProjectSection.astro";
+
+const title =
+  "Kabir Singh Mehrok - Frontend Developer | Software Engineer India";
+const description =
+  "Experienced Frontend Developer from India, specializing in UI development. Explore my portfolio of projects and professional experience as a Software Engineer.";
 ---
 
-<BaseLayout>
+<BaseLayout {title} {description}>
   <div class="mt-20">
     <div class="flex flex-col gap-24">
       <Hero />
