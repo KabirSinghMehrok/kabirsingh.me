@@ -1,11 +1,57 @@
 ---
+import Link from "./Link.astro";
+
 const today = new Date();
 ---
 
-<footer class="flex flex-row justify-between items-center mt-4 mb-16 mx-auto">
+<!-- <footer class="flex flex-row justify-between items-center mt-4 mb-16 mx-auto">
 	<p class="text-sm font-sans">&copy; {today.getFullYear()} Kabir Singh Mehrok. All rights reserved.</p>
   <div class='flex flex-row gap-2 items-center'>
     <div class="rounded-full w-2 h-2 bg-slate-500"></div>
     <p class="text-sm font-sans !mb-0">Delhi, India</p>
+</footer> -->
+<footer class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 mb-16">
+  <div
+    class="relative flex flex-col gap-2 p-4 border border-[#3b82f6] col-span-2"
+  >
+    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
+    <h2 class="text-sm source-serif-4-light-italic text-[40px]">
+      Liked what you saw?
+    </h2>
+    <p class="font-sans">
+      Reach out to me on
+      <Link href="mailto:mehrok.kabir.singh@gmail.com" fontSize="20px"
+        >email</Link
+      >
+      or
+      <Link href="https://www.linkedin.com/in/kabirsinghmehrok/" fontSize="20px"
+        >linkedin</Link
+      >
+    </p>
+  </div>
+  <div
+    class="relative flex flex-col items-center justify-center gap-2 p-4 border border-[#3b82f6] w-full"
+  >
+    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
+    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
+    <div class="flex flex-col gap-2 items-center">
+      <img
+        src="/logo-black.svg"
+        alt="kabirsingh.me"
+        style="height: 32px; color: gray"
+      />
+      <p class="text-sm font-sans">
+        &copy; {today.getFullYear()}. No rights reserved.
+      </p>
+    </div>
+    <div class="flex flex-row gap-2 items-center">
+      <div class="rounded-full w-2 h-2 bg-slate-500"></div>
+      <p class="text-sm font-sans !mb-0">Delhi, India</p>
+    </div>
+  </div>
 </footer>
-

@@ -29,6 +29,11 @@ const { title, description, image = FallbackImage } = Astro.props;
   href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<meta name="author" content="Kabir Singh Mehrok" />
+<meta
+  name="keywords"
+  content="frontend developer, frontend engineer, frontend engineer india, software developer, ui developer, ui engineer, Kabir Singh Mehrok, portfolio"
+/>
 
 <!-- Font preloads -->
 <link
@@ -45,18 +50,6 @@ const { title, description, image = FallbackImage } = Astro.props;
   type="font/woff"
   crossorigin
 />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LC8TX3S4LL"
-></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-
-  gtag("config", "G-LC8TX3S4LL");
-</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -90,3 +83,34 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kabir Singh Mehrok",
+    "url": "https://kabirsingh.me",
+    "sameAs": [
+      "https://www.linkedin.com/in/kabirsinghmehrok/",
+      "https://github.com/kabir-singh-mehrok"
+    ],
+    "jobTitle": "Frontend Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Ripik.AI"
+    },
+    "nationality": "Indian",
+    "knowsAbout": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "React",
+      "Tailwind CSS",
+      "UI Development",
+      "Frontend Development",
+      "Web Development"
+    ]
+  }
+</script>

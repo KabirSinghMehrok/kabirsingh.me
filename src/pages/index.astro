@@ -1,65 +1,21 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Experience from '../components/Experience.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/landing/Hero.astro";
+import ExperienceSection from "../components/landing/ExperienceSection.astro";
+import ProjectSection from "../components/landing/ProjectSection.astro";
+
+const title =
+  "Kabir Singh Mehrok - Frontend Developer | Software Engineer India";
+const description =
+  "Experienced Frontend Developer from India, specializing in UI development. Explore my portfolio of projects and professional experience as a Software Engineer.";
 ---
 
-<BaseLayout>
-  <div class="flex flex-row gap-4 items-center">
-    <h1 class="text-9xl font-serif font-light hero-text">Hola</h1>
-    <picture>
-      <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f600/512.webp" type="image/webp">
-      <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f600/512.gif" alt="😀" width="160" height="160">
-    </picture>
-  </div>
-  <div>
-    <p class="text-[35px] font-sans font-light leading-10 tracking-wider">
-      I am software developer and design enthusiast, who loves to build user first experiences
-    </p>
-  </div>
+<BaseLayout {title} {description}>
   <div class="mt-20">
-    <div class="flex flex-col gap-2">
-      <h2 class="text-[25px] font-sans leading-none">Experience</h2>
-      <div class="flex flex-col gap-6">
-        <Experience 
-          start="July 2024"
-          end="Present" 
-          jobTitle="Software Engineer" 
-          company="Ripik.ai" 
-          description="Built AI dashboards and Vision AI edge models for top manufacturers; led config-driven frontend shift, cutting dev time 90%; productized use cases; streamlined client deployments and dev-to-deploy pipelines." 
-        />
-        <Experience 
-          start="Sep 2023"
-          end="Jun 2024"
-          jobTitle="Undergraduate Researcher"
-          company="Space Systems Laboratory, IIIT Delhi"
-          description="Collaborated with ISRO and National Supercomputing Mission to analyze space debris dynamics using advanced particle filter techniques. Worked on ESP-PF implementation and modularization in Python."
-        />
-        <Experience 
-          start="Dec 2023"
-          end="Jan 2024"
-          jobTitle="Winter Intern"
-          company="EY"
-          description="Spearheaded data ingestion pipelines for Department of Education, Assam Govt's cQube dashboard, using Python and Pandas. Designed and coded a module to analyze and visualize events based on teacher attendance, using Angular, Python and REST API."
-        />
-        <Experience 
-          start="Aug 2023"
-          end="Oct 2023"
-          jobTitle="Frontend Web Developer"
-          company="MASH Project Foundation"
-          description="Revamped and optimized websites working on a hybrid WordPress as well as HTML/JS platform, achieving a 78% reduction in load time and high Google Lighthouse scores; along with overhauling design and adding new pages."
-        />
-        <Experience 
-          start="Jan 2023"
-          end="May 2023"
-          jobTitle="Web Development Intern"
-          company="Complex Systems Laboratory"
-          description="Designed and Implemented API platform leveraging ReactJS and Axios where users can register and subscribe to APIs, purchase tokens for streamlined access to valuable research resources."
-        />
-      </div>
+    <div class="flex flex-col gap-24">
+      <Hero />
+      <ExperienceSection />
+      <ProjectSection />
     </div>
   </div>
-</BaseLayout> 
+</BaseLayout>
