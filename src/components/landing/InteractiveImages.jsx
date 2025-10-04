@@ -54,7 +54,7 @@ const emojiArray = [
   }
 ];
 
-const InteractiveImagesComponent = () => {
+const InteractiveImagesComponent = ({ children }) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -232,6 +232,7 @@ const InteractiveImagesComponent = () => {
           <div className="resize-handle bottom-right" />
         </div>
       ))}
+      {children}
     </div>
   );
 };

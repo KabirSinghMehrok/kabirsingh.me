@@ -2,7 +2,9 @@
 import InteractiveImagesComponent from "./InteractiveImages.jsx";
 ---
 
-<InteractiveImagesComponent client:load />
+<InteractiveImagesComponent client:load>
+  <slot />
+</InteractiveImagesComponent>
 
 <style is:global>
   .resizable-draggable {
