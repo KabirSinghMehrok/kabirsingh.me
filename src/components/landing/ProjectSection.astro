@@ -4,35 +4,28 @@ import ProjectModal from "./ProjectModal.astro";
 const project = await Astro.glob("../../data/projects/*.md");
 ---
 
-e
 <div class="flex flex-col gap-2">
-  <h2 class="text-[40px] source-serif-4-light-italic leading-none">
+  <h2 class="text-[40px] source-serif-4-light-italic leading-none mb-2">
     ...and on some amazing projects
   </h2>
-  <div class="relative flex flex-col border border-[#3b82f6]">
-    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
-    {
-      project.map((exp, idx) => (
-        <>
-          <Project
-            title={exp.frontmatter.title}
-            tagline={exp.frontmatter.tagline}
-            github_url={exp.frontmatter.github_url}
-            live_url={exp.frontmatter.live_url}
-            imageUrl={exp.frontmatter.imageUrl}
-            status={exp.frontmatter.status}
-            technologies={exp.frontmatter.technologies}
-            role={exp.frontmatter.role}
-            iconEmoji={exp.frontmatter.iconEmoji}
-            modalId={`modal-${exp.frontmatter.title}`}
-          />
-        </>
-      ))
-    }
-  </div>
+  {
+    project.map((exp, idx) => (
+      <>
+        <Project
+          title={exp.frontmatter.title}
+          tagline={exp.frontmatter.tagline}
+          github_url={exp.frontmatter.github_url}
+          live_url={exp.frontmatter.live_url}
+          imageUrl={exp.frontmatter.imageUrl}
+          status={exp.frontmatter.status}
+          technologies={exp.frontmatter.technologies}
+          role={exp.frontmatter.role}
+          iconEmoji={exp.frontmatter.iconEmoji}
+          modalId={`modal-${exp.frontmatter.title}`}
+        />
+      </>
+    ))
+  }
 </div>
 
 {

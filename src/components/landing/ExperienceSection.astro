@@ -1,14 +1,24 @@
 ---
 import Experience from "./Experience.astro";
 import Link from "../Link.astro";
+import ExperienceModal from "./ExperienceModal.astro";
 const experience = await Astro.glob("../../data/experience/*.md");
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/experience-logos/*",
 );
+
+const experienceBreakpoint = 2; // any entry after this will just be an icon
+const sortedExperience = experience.sort(
+  (a, b) =>
+    new Date(b.frontmatter.start_date).valueOf() -
+    new Date(a.frontmatter.start_date).valueOf(),
+);
+const rowExperienceList = sortedExperience.slice(0, experienceBreakpoint);
+const iconExperienceList = sortedExperience.slice(experienceBreakpoint);
 ---
 
 <div class="flex flex-col gap-2">
-  <div class="flex flex-col mb-8">
+  <div class="flex flex-col mb-2">
     <h2 class="text-[40px] source-serif-4-light-italic leading-none">
       I've worked at amazing places
     </h2>
@@ -26,39 +36,129 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       </Link>
     </p>
   </div>
-  <div class="relative flex flex-col border border-[#3b82f6]">
-    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
+  <div class="flex flex-col gap-2">
     {
-      experience
-        .sort(
-          (a, b) =>
-            new Date(b.frontmatter.start_date).valueOf() -
-            new Date(a.frontmatter.start_date).valueOf(),
-        )
-        .map(async (exp, idx) => {
-          const image =
-            await images[
-              `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
-            ]();
-          return (
-            <>
-              {/* {idx != 0 && (
-                <div class="h-0 w-full border-b border-[#3b82f6] border-dashed" />
-              )} */}
-              <Experience
-                start={exp.frontmatter.start_date}
-                end={exp.frontmatter.end_date}
-                jobTitle={exp.frontmatter.role}
-                company={exp.frontmatter.company}
-                description={exp.frontmatter.summary}
-                icon={image.default}
-              />
-            </>
-          );
-        })
+      rowExperienceList.map(async (exp, idx) => {
+        const image =
+          await images[
+            `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
+          ]();
+        return (
+          <>
+            <Experience
+              variant={"row"}
+              start={exp.frontmatter.start_date}
+              end={exp.frontmatter.end_date}
+              jobTitle={exp.frontmatter.role}
+              company={exp.frontmatter.company}
+              description={exp.frontmatter.summary}
+              icon={image.default}
+              modalId={`modal-${exp.frontmatter.company}`}
+            />
+          </>
+        );
+      })
+    }
+  </div>
+
+  <div class="flex flex-row gap-2 flex-wrap">
+    {
+      iconExperienceList.map(async (exp, idx) => {
+        const image =
+          await images[
+            `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
+          ]();
+        return (
+          <Experience
+            variant={"icon"}
+            start={exp.frontmatter.start_date}
+            end={exp.frontmatter.end_date}
+            jobTitle={exp.frontmatter.role}
+            company={exp.frontmatter.company}
+            description={exp.frontmatter.summary}
+            icon={image.default}
+            modalId={`modal-${exp.frontmatter.company}`}
+          />
+        );
+      })
     }
   </div>
 </div>
+
+{
+  sortedExperience.map(async (exp, idx) => {
+    const image =
+      await images[`/src/assets/experience-logos/${exp.frontmatter.iconUrl}`]();
+    return (
+      <ExperienceModal
+        start={exp.frontmatter.start_date}
+        end={exp.frontmatter.end_date}
+        jobTitle={exp.frontmatter.role}
+        company={exp.frontmatter.company}
+        description={exp.frontmatter.summary}
+        icon={image.default}
+        modalId={`modal-${exp.frontmatter.company}`}
+      >
+        <exp.Content />
+      </ExperienceModal>
+    );
+  })
+}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Function to open a modal
+    const openModal = (modal) => {
+      if (modal == null) return;
+      modal.classList.add("is-open");
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    };
+
+    // Function to close a modal
+    const closeModal = (modal) => {
+      if (modal == null) return;
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "auto"; // Restore scrolling
+    };
+
+    // --- Event Listeners ---
+
+    // 1. Open modal
+    const openModalTriggers = document.querySelectorAll("[data-modalTrigger]");
+    openModalTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        const modalId = trigger.getAttribute("data-modalTrigger");
+        const modal = document.getElementById(modalId);
+        openModal(modal);
+      });
+    });
+
+    // 2. Close modal via the close button
+    const closeModalButtons = document.querySelectorAll("[data-modal-close]");
+    closeModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = button.closest(".modal-overlay");
+        closeModal(modal);
+      });
+    });
+
+    // 3. Close modal by clicking the overlay
+    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+      overlay.addEventListener("click", (event) => {
+        // Only close if the overlay itself is clicked, not its children
+        if (event.target === overlay) {
+          closeModal(overlay);
+        }
+      });
+    });
+
+    // 4. Close modal with the 'Escape' key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        const openModal = document.querySelector(".modal-overlay.is-open");
+        closeModal(openModal);
+      }
+    });
+  });
+</script>
