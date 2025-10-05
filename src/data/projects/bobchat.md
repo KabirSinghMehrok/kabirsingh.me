@@ -3,7 +3,7 @@ title: "Bobchat"
 tagline: "A real-time chat application developed using websockets."
 status: "Completed"
 iconEmoji: '💬'
-technologies: ["User Interface Design", "Node.js", "SQL", "Full-Stack Development", "React.js", "MySQL", "HTML5"] 
+technologies: ["React.js", "HTML/CSS", "Node.js", "MySQL"] 
 role: "Developer"
 github_url: ""
 live_url: ""

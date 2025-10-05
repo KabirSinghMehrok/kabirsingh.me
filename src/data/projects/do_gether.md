@@ -3,7 +3,7 @@ title: "Do-gether"
 tagline: "An innovative web-based task management application."
 status: "Completed"
 'iconEmoji': '🤝'
-technologies: ["JavaScript", "Node.js", "SQL", "React.js", "MySQL", "HTML5"] 
+technologies: [ "React.js", "JavaScript", "Node.js", "SQL", "HTML/CSS"] 
 role: "Developer"
 github_url: ""
 live_url: ""
