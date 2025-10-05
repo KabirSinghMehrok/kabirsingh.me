@@ -3,7 +3,7 @@ title: "Paprika"
 tagline: "A personalized electives advisory system for students at IIIT Delhi utilizing Prolog and Python."
 iconEmoji: '🌶'
 status: "Completed"
-technologies: ["Python (Programming Language)", "Prolog"] 
+technologies: ["Python", "Prolog"] 
 role: "Developer"
 github_url: "https://github.com/KabirSinghMehrok/paprika" 
 live_url: ""

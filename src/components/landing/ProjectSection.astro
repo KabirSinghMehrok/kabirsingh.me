@@ -1,38 +1,106 @@
 ---
 import Project from "./Project.astro";
+import ProjectModal from "./ProjectModal.astro";
 const project = await Astro.glob("../../data/projects/*.md");
 ---
 
 <div class="flex flex-col gap-2">
-  <h2 class="text-[40px] source-serif-4-light-italic leading-none">
+  <h2 class="text-[40px] source-serif-4-light-italic leading-none mb-2">
     ...and on some amazing projects
   </h2>
-  <div class="relative flex flex-col border border-[#3b82f6]">
-    <div class="absolute resize-handle top-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle top-[-5px] right-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] left-[-5px]"></div>
-    <div class="absolute resize-handle bottom-[-5px] right-[-5px]"></div>
-    {
-      project.map((exp, idx) => (
-        <>
-          {/* {idx != 0 && (
-            <div class="w-full h-4">
-              <div class="h-0.5 max-w-[40px] bg-[#c93486] border border-white mx-auto" />
-            </div>
-          )} */}
-          <Project
-            title={exp.frontmatter.title}
-            tagline={exp.frontmatter.tagline}
-            github_url={exp.frontmatter.github_url}
-            live_url={exp.frontmatter.live_url}
-            imageUrl={exp.frontmatter.imageUrl}
-            status={exp.frontmatter.status}
-            technologies={exp.frontmatter.technologies}
-            role={exp.frontmatter.role}
-            iconEmoji={exp.frontmatter.iconEmoji}
-          />
-        </>
-      ))
-    }
-  </div>
+  {
+    project.map((exp, idx) => (
+      <>
+        <Project
+          title={exp.frontmatter.title}
+          tagline={exp.frontmatter.tagline}
+          github_url={exp.frontmatter.github_url}
+          live_url={exp.frontmatter.live_url}
+          imageUrl={exp.frontmatter.imageUrl}
+          status={exp.frontmatter.status}
+          technologies={exp.frontmatter.technologies}
+          role={exp.frontmatter.role}
+          iconEmoji={exp.frontmatter.iconEmoji}
+          modalId={`modal-${exp.frontmatter.title}`}
+        />
+      </>
+    ))
+  }
 </div>
+
+{
+  project.map((exp) => (
+    <ProjectModal
+      modalId={`modal-${exp.frontmatter.title}`}
+      title={exp.frontmatter.title}
+      tagline={exp.frontmatter.tagline}
+      github_url={exp.frontmatter.github_url}
+      live_url={exp.frontmatter.live_url}
+      imageUrl={exp.frontmatter.imageUrl}
+      status={exp.frontmatter.status}
+      technologies={exp.frontmatter.technologies}
+      role={exp.frontmatter.role}
+      iconEmoji={exp.frontmatter.iconEmoji}
+    >
+      <exp.Content />
+    </ProjectModal>
+  ))
+}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Function to open a modal
+    const openModal = (modal) => {
+      if (modal == null) return;
+      modal.classList.add("is-open");
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    };
+
+    // Function to close a modal
+    const closeModal = (modal) => {
+      if (modal == null) return;
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "auto"; // Restore scrolling
+    };
+
+    // --- Event Listeners ---
+
+    // 1. Open modal
+    const openModalTriggers = document.querySelectorAll("[data-modalTrigger]");
+    openModalTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        const modalId = trigger.getAttribute("data-modalTrigger");
+        const modal = document.getElementById(modalId);
+        openModal(modal);
+      });
+    });
+
+    // 2. Close modal via the close button
+    const closeModalButtons = document.querySelectorAll("[data-modal-close]");
+    closeModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = button.closest(".modal-overlay");
+        closeModal(modal);
+      });
+    });
+
+    // 3. Close modal by clicking the overlay
+    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+      overlay.addEventListener("click", (event) => {
+        // Only close if the overlay itself is clicked, not its children
+        if (event.target === overlay) {
+          closeModal(overlay);
+        }
+      });
+    });
+
+    // 4. Close modal with the 'Escape' key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        const openModal = document.querySelector(".modal-overlay.is-open");
+        closeModal(openModal);
+      }
+    });
+  });
+</script>

@@ -3,7 +3,7 @@ title: "Agriatra"
 tagline: "An agro-tourism platform where tourists can explore and book farms for stay, and farmers can list their farm and manage bookings."
 iconEmoji: '🏝️'
 status: "Completed"
-technologies: ["JavaScript", "User Interface Design", "HTML", "Full-Stack Development", "Django", "Cascading Style Sheets (CSS)", "HTML5"]
+technologies: ["HTML/CSS", "Django"]
 role: "Lead Developer"
 github_url: "https://github.com/KabirSinghMehrok/agriatra"
 live_url: ""

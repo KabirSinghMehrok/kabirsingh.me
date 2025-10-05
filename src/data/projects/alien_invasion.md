@@ -3,7 +3,7 @@ title: "Alien Invasion"
 tagline: "A level-based single-player shooting game, challenging players to defeat alien hordes and progress through increasing difficulty levels."
 iconEmoji: '👽'
 status: "Completed"
-technologies: ["Python (Programming Language)", "Object-Oriented Programming (OOP)"] 
+technologies: ["Python", "Pygame"] 
 role: "Developer"
 github_url: "https://github.com/KabirSinghMehrok/alien-invasion" 
 live_url: ""
