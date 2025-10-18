@@ -7,6 +7,7 @@ technologies: ["Java"]
 role: "Developer"
 github_url: ""
 live_url: ""
+isHidden: true
 ---
 
 ### Overview

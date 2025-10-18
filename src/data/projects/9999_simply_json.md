@@ -7,6 +7,7 @@ technologies: ["Typescript", "Tailwind", "Zustand"]
 role: "Lead Developer"
 github_url: "https://github.com/KabirSinghMehrok/simply-json"
 live_url: "https://simply-json.netlify.app"
+project_image: "/public/project_mockup/simply-json.png"
 ---
 
 ### Overview

@@ -1,21 +1,38 @@
 ---
 import InteractiveImages from "./InteractiveImages.astro";
+import Pill from "./Pill.astro";
 ---
 
 <div
-  class="flex flex-row gap-8 justify-between items-center w-full min-h-[400px]"
+  class="flex flex-col min-h-[400px] md:min-h-[500px] justify-center text-[40px]"
 >
-  <div class="flex flex-col gap-4 md:shrink-0">
-    <h1 class="text-[60px] source-serif-4-super-light leading-16">
-      Design it for <span class="source-serif-4-medium-italic">humans</span><br
+  <div class="flex flex-col gap-4">
+    <div
+      class="flex flex-row items-center gap-2 source-serif-4-super-light leading-10"
+    >
+      Hi,
+      <Pill
+        mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp"
+        fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif"
       />
-      and build it for <span class="source-serif-4-medium-italic">impact</span
-      ><br />
-    </h1>
-    <p class="md:max-w-[600px] flex-1">
-      From building seamless UIs to automating complex systems, <br />I build
-      digital experiences that are fast, intuitive, and built to last
-    </p>
+      I am <span class="source-serif-4-regular-italic">Kabir Singh Mehrok</span>
+    </div>
+    <div
+      class="flex flex-row items-center gap-2 flex-wrap source-serif-4-super-light leading-16"
+    >
+      I blend <Pill
+        text="software engineering"
+        mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47e/512.webp"
+        fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47e/512.gif"
+      /> and <Pill
+        text="product design"
+        mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/270f_fe0f/512.webp"
+        fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/270f_fe0f/512.gif"
+      /> to build products with <Pill
+        text="impact"
+        mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4aa/512.webp"
+        fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4aa/512.gif"
+      />
+    </div>
   </div>
-  <InteractiveImages />
 </div>

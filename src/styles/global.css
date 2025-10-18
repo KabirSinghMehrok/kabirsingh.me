@@ -57,10 +57,24 @@ a,
   font-style: italic;
 }
 
+.source-serif-4-regular-italic {
+  font-family: "Source Serif 4", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
 .source-serif-4-light {
   font-family: "Source Serif 4", serif;
   font-optical-sizing: auto;
   font-weight: 300;
+  font-style: normal;
+}
+
+.source-serif-4-regular {
+  font-family: "Source Serif 4", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
 }
 

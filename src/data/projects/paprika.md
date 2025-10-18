@@ -7,6 +7,7 @@ technologies: ["Python", "Prolog"]
 role: "Developer"
 github_url: "https://github.com/KabirSinghMehrok/paprika" 
 live_url: ""
+isHidden: true
 ---
 
 ### Overview

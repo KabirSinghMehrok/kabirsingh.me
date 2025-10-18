@@ -7,6 +7,7 @@ technologies: ["Adobe Creative Suite"]
 role: "Designer"
 github_url: ""
 live_url: ""
+project_image: "/public/project_mockup/safebiking.png"
 ---
 
 ### Overview

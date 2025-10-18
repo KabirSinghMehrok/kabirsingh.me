@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import Link from "../Link.astro";
+import { Image } from "astro:assets";
 
 type Props = HTMLAttributes<"div"> & {
   title: string;
@@ -13,6 +14,8 @@ type Props = HTMLAttributes<"div"> & {
   iconEmoji: string;
   technologies: string[];
   modalId: string;
+  showUpperBorder: boolean;
+  project_image: string;
 };
 
 const {
@@ -25,26 +28,40 @@ const {
   iconEmoji,
   technologies,
   modalId,
+  showUpperBorder,
+  project_image,
   ...props
 } = Astro.props;
 ---
 
 <div
-  class="flex flex-col md:flex-row md:justify-between gap-1 px-3 py-2 hover:cursor-pointer border border-[#3b82f6] hover:bg-gray-50"
+  class={`flex flex-col md:flex-row md:justify-between gap-1 pr-3 pt-3 pb-2 hover:cursor-pointer ${showUpperBorder ? "border-t border-[#c9c9c9]" : ""} hover:bg-gray-50`}
   data-modalTrigger={modalId}
   {...props}
 >
-  <div class="flex flex-col md:flex-row gap-2 w-full">
-    <div
-      class="w-[50px] h-[50px] shrink-0 text-[40px] flex items-center justify-center"
-    >
-      {iconEmoji}
-    </div>
+  <div class="flex flex-col md:flex-row gap-4 w-full">
+    {console.log("project_image", project_image)}
+    {
+      project_image ? (
+        <img
+          src={project_image}
+          alt={title}
+          class="object-contain max-h-[120px] w-auto h-[120px] md:h-[120px] shadow-sm"
+          style="max-width: 100%;"
+        />
+      ) : (
+        <div class="w-[50px] h-[50px] shrink-0 text-[40px] flex items-center justify-center">
+          {iconEmoji}
+        </div>
+      )
+    }
     <div class="flex flex-col w-full">
       <div class="flex md:flex-row justify-between gap-2 flex-grow">
-        <p class="text-[18px] font-sans font-medium source-sans-3-bold">
-          {title}
-        </p>
+        <div class="flex items-center">
+          <p class="text-[18px] font-sans font-medium source-serif-4-regular">
+            {title}
+          </p>
+        </div>
         <div class="flex flex-row gap-2 shrink-0">
           {github_url && <Link href={github_url}>github</Link>}
           {live_url && <Link href={live_url}>live link</Link>}
@@ -53,7 +70,7 @@ const {
       <p class="text-[15px] source-sans-3-light">
         {tagline}
       </p>
-      <div class="flex flex-row gap-1 flex-wrap">
+      <div class="flex flex-row gap-1 flex-wrap mt-5">
         {
           technologies.map((technology) => (
             <p class="border border-slate-300 leading-6 py-0 px-2 rounded-sm text-[12px] source-sans-3-light truncate">
