@@ -23,13 +23,13 @@ const { start, end, jobTitle, company, description, icon, modalId, ...props } =
   aria-hidden="true"
 >
   <div
-    class="bg-white rounded-lg w-[90%] max-w-[940px] max-h-[90vh] scale-90 transition-transform duration-300 ease-in-out modal-container"
+    class="bg-white rounded-lg w-[90%] max-w-[700px] max-h-[90vh] scale-90 transition-transform duration-300 ease-in-out modal-container flex flex-col"
     role="dialog"
     aria-modal="true"
     aria-labelledby={`title-${modalId}`}
   >
     <header
-      class="relative flex flex-col items-end border-b border-[#ddd] pb-4 mb-4 px-4 modal-header"
+      class="relative flex flex-col items-end border-b border-[#ddd] pb-4 mb-4 px-4 mt-4 modal-header shrink-0"
     >
       <button
         class="absolute -top-8 -right-8 bg-white cursor-pointer modal-close-btn rounded-full w-8 h-8 flex flex-col items-center justify-center"
@@ -66,7 +66,7 @@ const { start, end, jobTitle, company, description, icon, modalId, ...props } =
         </div>
       </div>
     </header>
-    <main class="px-4 pb-4 modal-content overflow-y-auto">
+    <main class="px-4 pb-4 overflow-y-auto modal-content flex-grow min-h-0">
       <slot />
     </main>
   </div>

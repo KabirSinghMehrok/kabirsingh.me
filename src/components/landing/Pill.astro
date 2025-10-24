@@ -4,22 +4,45 @@ export interface Props {
   mainImage?: string;
   fallbackImage?: string;
   alt?: string;
+  isTextOut: boolean;
 }
 
-const { text, mainImage, fallbackImage, alt = "Icon" } = Astro.props;
+const {
+  text,
+  mainImage,
+  fallbackImage,
+  isTextOut = false,
+  alt = "Icon",
+} = Astro.props;
 ---
 
-<div class="pill">
-  {
-    mainImage && fallbackImage && (
-      <picture class="pill__image">
-        <source srcset={mainImage} type="image/webp" />
-        <img src={fallbackImage} alt={alt} />
-      </picture>
-    )
-  }
-  {text && <span class="pill__text source-serif-4-light">{text}</span>}
-</div>
+{
+  isTextOut ? (
+    <div class="flex gap-2 items-center">
+      {text && (
+        <span class="pill__text-large source-serif-4-super-light">{text}</span>
+      )}
+      <div class="pill">
+        {mainImage && fallbackImage && (
+          <picture class="pill__image">
+            <source srcset={mainImage} type="image/webp" />
+            <img src={fallbackImage} alt={alt} />
+          </picture>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div class="pill">
+      {mainImage && fallbackImage && (
+        <picture class="pill__image">
+          <source srcset={mainImage} type="image/webp" />
+          <img src={fallbackImage} alt={alt} />
+        </picture>
+      )}
+      {text && <span class="pill__text source-serif-4-light">{text}</span>}
+    </div>
+  )
+}
 
 <style>
   .pill {
@@ -60,6 +83,14 @@ const { text, mainImage, fallbackImage, alt = "Icon" } = Astro.props;
     margin: 0;
   }
 
+  .pill__text-large {
+    font-size: 40px;
+    line-height: 1;
+    white-space: nowrap;
+    margin: 0;
+    text-decoration: #ffcb29 wavy underline;
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .pill {
@@ -75,6 +106,13 @@ const { text, mainImage, fallbackImage, alt = "Icon" } = Astro.props;
     .pill__text {
       font-size: 14px;
       line-height: 1;
+    }
+
+    .pill__text-large {
+      font-size: 30px;
+      line-height: 1;
+      white-space: nowrap;
+      margin: 0;
     }
   }
 </style>
