@@ -7,7 +7,7 @@ technologies: ["Python", "Pygame"]
 role: "Developer"
 github_url: "https://github.com/KabirSinghMehrok/alien-invasion" 
 live_url: ""
-project_image: "/public/project_mockup/alien-invasion.png"
+project_image: "/project_mockup/alien-invasion.png"
 ---
 
 ### Overview
