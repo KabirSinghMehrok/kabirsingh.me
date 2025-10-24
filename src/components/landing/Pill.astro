@@ -1,0 +1,118 @@
+---
+export interface Props {
+  text?: string;
+  mainImage?: string;
+  fallbackImage?: string;
+  alt?: string;
+  isTextOut: boolean;
+}
+
+const {
+  text,
+  mainImage,
+  fallbackImage,
+  isTextOut = false,
+  alt = "Icon",
+} = Astro.props;
+---
+
+{
+  isTextOut ? (
+    <div class="flex gap-2 items-center">
+      {text && (
+        <span class="pill__text-large source-serif-4-super-light">{text}</span>
+      )}
+      <div class="pill">
+        {mainImage && fallbackImage && (
+          <picture class="pill__image">
+            <source srcset={mainImage} type="image/webp" />
+            <img src={fallbackImage} alt={alt} />
+          </picture>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div class="pill">
+      {mainImage && fallbackImage && (
+        <picture class="pill__image">
+          <source srcset={mainImage} type="image/webp" />
+          <img src={fallbackImage} alt={alt} />
+        </picture>
+      )}
+      {text && <span class="pill__text source-serif-4-light">{text}</span>}
+    </div>
+  )
+}
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    border: 0.5px solid #cfcfcf;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 0.6px 2.7px 0px;
+    max-width: fit-content;
+    max-height: fit-content;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .pill__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pill__image img {
+    width: 24px;
+    height: 24px;
+    border-radius: 0;
+    max-width: none;
+    object-fit: contain;
+  }
+
+  .pill__text {
+    font-size: 28px;
+    line-height: 1;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .pill__text-large {
+    font-size: 40px;
+    line-height: 1;
+    white-space: nowrap;
+    margin: 0;
+    text-decoration: #ffcb29 wavy underline;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .pill {
+      padding: 10px 16px;
+      gap: 10px;
+    }
+
+    .pill__image img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pill__text {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .pill__text-large {
+      font-size: 30px;
+      line-height: 1;
+      white-space: nowrap;
+      margin: 0;
+    }
+  }
+</style>

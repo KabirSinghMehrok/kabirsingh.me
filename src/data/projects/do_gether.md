@@ -7,6 +7,7 @@ technologies: [ "React.js", "JavaScript", "Node.js", "SQL", "HTML/CSS"]
 role: "Developer"
 github_url: ""
 live_url: ""
+isHidden: true
 ---
 
 ### Overview

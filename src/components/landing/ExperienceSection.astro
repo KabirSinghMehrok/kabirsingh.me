@@ -19,18 +19,18 @@ const iconExperienceList = sortedExperience.slice(experienceBreakpoint);
 
 <div class="flex flex-col gap-2">
   <div class="flex flex-col mb-2">
-    <h2 class="text-[40px] source-serif-4-light-italic leading-none">
+    <h2 class="text-[40px] source-serif-4-super-light leading-none">
       I've worked at amazing places
     </h2>
     <p class="'text-[15px] text-slate-500">
       Help me expand this list, reach me out on
-      <Link href="mailto:mehrok.kabir.singh@gmail.com" fontSize="20px">
+      <Link href="mailto:mehrok.kabir.singh@gmail.com" fontSize="15px">
         email
       </Link>
       or
       <Link
         href="https://www.linkedin.com/in/kabirsinghmehrok/"
-        fontSize="20px"
+        fontSize="15px"
       >
         linkedin
       </Link>
@@ -61,7 +61,14 @@ const iconExperienceList = sortedExperience.slice(experienceBreakpoint);
     }
   </div>
 
-  <div class="flex flex-row gap-2 flex-wrap">
+  <div class="flex flex-row gap-4 flex-wrap items-center mt-8">
+    <div class="flex flex-row">
+      <h2 class="text-[35px] source-serif-4-super-light leading-none">
+        and here
+      </h2>
+      <img src="/public/right-arrow.svg" alt="arrow-right" class="mx-4" />
+    </div>
+
     {
       iconExperienceList.map(async (exp, idx) => {
         const image =

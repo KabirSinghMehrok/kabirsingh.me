@@ -17,20 +17,29 @@ const { start, end, jobTitle, company, description, icon, modalId, ...props } =
   Astro.props;
 ---
 
-<div class="modal-overlay" id={modalId} aria-hidden="true">
+<div
+  class="fixed inset-0 w-full h-full bg-black/70 flex justify-center items-center invisible opacity-0 transition-[opacity,visibility] duration-300 ease-in-out z-[1000] modal-overlay"
+  id={modalId}
+  aria-hidden="true"
+>
   <div
-    class="modal-container"
+    class="bg-white rounded-lg w-[90%] max-w-[700px] max-h-[90vh] scale-90 transition-transform duration-300 ease-in-out modal-container flex flex-col"
     role="dialog"
     aria-modal="true"
     aria-labelledby={`title-${modalId}`}
   >
-    <header class="modal-header px-4">
-      <button class="modal-close-btn" data-modal-close aria-label="Close modal"
-        >&times;</button
+    <header
+      class="relative flex flex-col items-end border-b border-[#ddd] pb-4 mb-4 px-4 mt-4 modal-header shrink-0"
+    >
+      <button
+        class="absolute -top-8 -right-8 bg-white cursor-pointer modal-close-btn rounded-full w-8 h-8 flex flex-col items-center justify-center"
+        data-modal-close
+        aria-label="Close modal"><img src="/public/cross.svg" /></button
       >
-      <div class="flex flex-col md:flex-row gap-2 w-full md:items-center">
+      <div class="flex flex-col md:flex-row gap-4 w-full md:items-center mt-4">
         <div
-          class="flex w-[40px] h-[40px] items-center justify-center shrink-0"
+          class="flex w-[60px] h-[60px] items-center justify-center shrink-0 border border-[#cfcfcf] rounded-md p-3"
+          style="box-shadow: rgba(99, 99, 99, 0.2) 0px 0.6px 2.7px 0px;"
         >
           <Image
             src={icon}
@@ -42,7 +51,7 @@ const { start, end, jobTitle, company, description, icon, modalId, ...props } =
         </div>
         <div class="flex flex-col w-full">
           <div class="flex flex-col md:flex-row justify-between flex-grow">
-            <p class="text-[18px] font-sans font-medium source-sans-3-bold">
+            <p class="text-[18px] font-sans font-medium source-serif-4-regular">
               {jobTitle}
               <span class="source-serif-4-light-italic"> at </span>
               {company}
@@ -57,65 +66,20 @@ const { start, end, jobTitle, company, description, icon, modalId, ...props } =
         </div>
       </div>
     </header>
-    <main class="modal-content px-4 pb-4">
+    <main class="px-4 pb-4 overflow-y-auto modal-content flex-grow min-h-0">
       <slot />
     </main>
   </div>
 </div>
 
 <style>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease;
-    z-index: 1000;
-  }
-
   .modal-overlay.is-open {
     visibility: visible;
     opacity: 1;
   }
 
-  .modal-container {
-    background-color: white;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 700px;
-    max-height: 90vh;
-    overflow-y: auto;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-  }
-
   .modal-overlay.is-open .modal-container {
     transform: scale(1);
-  }
-
-  .modal-header {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .modal-close-btn {
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
   }
 
   .modal-content :global(p) {
