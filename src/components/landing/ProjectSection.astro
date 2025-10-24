@@ -45,6 +45,7 @@ const project = await Astro.glob("../../data/projects/*.md");
       technologies={exp.frontmatter.technologies}
       role={exp.frontmatter.role}
       iconEmoji={exp.frontmatter.iconEmoji}
+      project_image={exp.frontmatter.project_image}
     >
       <exp.Content />
     </ProjectModal>

@@ -13,6 +13,7 @@ interface Props {
   status: string;
   iconEmoji: string;
   technologies: string[];
+  project_image: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   iconEmoji,
   technologies,
   modalId,
+  project_image,
   ...props
 } = Astro.props;
 ---
@@ -35,30 +37,43 @@ const {
     aria-modal="true"
     aria-labelledby={`title-${modalId}`}
   >
-    <header class="modal-header px-4">
-      <button class="modal-close-btn" data-modal-close aria-label="Close modal"
-        >&times;</button
+    <header class="relative modal-header px-4 mt-4">
+      <button
+        class="absolute -top-8 -right-8 bg-white cursor-pointer modal-close-btn rounded-full w-8 h-8 flex flex-col items-center justify-center"
+        data-modal-close
+        aria-label="Close modal"><img src="/public/cross.svg" /></button
       >
-      <div class="flex flex-col md:flex-row gap-2 w-full">
-        <div
-          class="w-[50px] h-[50px] shrink-0 text-[40px] flex items-center justify-center"
-        >
-          {iconEmoji}
-        </div>
+      <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex flex-col w-full">
           <div class="flex md:flex-row justify-between gap-2 flex-grow">
-            <p class="text-[18px] font-sans font-medium source-sans-3-bold">
-              {title}
-            </p>
+            <div class="flex items-center">
+              <p
+                class="text-[18px] font-sans font-medium source-serif-4-regular"
+              >
+                {title}
+              </p>
+            </div>
             <div class="flex flex-row gap-2 shrink-0">
-              {github_url && <Link href={github_url}>github</Link>}
-              {live_url && <Link href={live_url}>live link</Link>}
+              {
+                github_url && (
+                  <Link href={github_url} fontSize="15px">
+                    github
+                  </Link>
+                )
+              }
+              {
+                live_url && (
+                  <Link href={live_url} fontSize="15px">
+                    live link
+                  </Link>
+                )
+              }
             </div>
           </div>
           <p class="text-[15px] source-sans-3-light">
             {tagline}
           </p>
-          <div class="flex flex-row gap-1 flex-wrap">
+          <div class="flex flex-row gap-1 flex-wrap mt-5">
             {
               technologies.map((technology) => (
                 <p class="border border-slate-300 leading-6 py-0 px-2 rounded-sm text-[12px] source-sans-3-light truncate">
@@ -70,7 +85,7 @@ const {
         </div>
       </div>
     </header>
-    <main class="modal-content px-4 pb-4">
+    <main class="modal-content px-4 pb-4 overflow-y-auto">
       <slot />
     </main>
   </div>
@@ -105,8 +120,7 @@ const {
     border-radius: 8px;
     width: 90%;
     max-width: 700px;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 90vh
     transform: scale(0.9);
     transition: transform 0.3s ease;
   }
@@ -122,13 +136,6 @@ const {
     border-bottom: 1px solid #ddd;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
-  }
-
-  .modal-close-btn {
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
   }
 
   .modal-content :global(p) {

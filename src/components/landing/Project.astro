@@ -63,8 +63,20 @@ const {
           </p>
         </div>
         <div class="flex flex-row gap-2 shrink-0">
-          {github_url && <Link href={github_url}>github</Link>}
-          {live_url && <Link href={live_url}>live link</Link>}
+          {
+            github_url && (
+              <Link href={github_url} fontSize="15px">
+                github
+              </Link>
+            )
+          }
+          {
+            live_url && (
+              <Link href={live_url} fontSize="15px">
+                live link
+              </Link>
+            )
+          }
         </div>
       </div>
       <p class="text-[15px] source-sans-3-light">
