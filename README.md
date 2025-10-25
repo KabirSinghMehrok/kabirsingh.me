@@ -1,6 +1,6 @@
 # Kabir Singh Mehrok - Personal Portfolio
 
-This is the source code for my personal portfolio website, [kabirsingh.me](https://kabirsingh.me). It's a place to showcase my professional experience, projects, and skills as a Frontend Developer.
+This is the source code for my personal portfolio website, [kabirsingh.me](https://kabirsingh.me). It's a place to showcase my professional experience, projects, and skills as a Software Developer.
 
 ## ✨ Features
 
