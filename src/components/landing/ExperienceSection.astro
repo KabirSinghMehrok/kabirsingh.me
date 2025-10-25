@@ -73,26 +73,28 @@ const iconExperienceList = sortedExperience.slice(experienceBreakpoint);
       <img src="/right-arrow.svg" alt="arrow-right" class="mx-4" />
     </div>
 
-    {
-      iconExperienceList.map(async (exp, idx) => {
-        const image =
-          await images[
-            `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
-          ]();
-        return (
-          <Experience
-            variant={"icon"}
-            start={exp.frontmatter.start_date}
-            end={exp.frontmatter.end_date}
-            jobTitle={exp.frontmatter.role}
-            company={exp.frontmatter.company}
-            description={exp.frontmatter.summary}
-            icon={image.default}
-            modalId={`modal-${exp.frontmatter.company}`}
-          />
-        );
-      })
-    }
+    <div class="flex flex-row gap-4 flex-wrap items-center">
+      {
+        iconExperienceList.map(async (exp, idx) => {
+          const image =
+            await images[
+              `/src/assets/experience-logos/${exp.frontmatter.iconUrl}`
+            ]();
+          return (
+            <Experience
+              variant={"icon"}
+              start={exp.frontmatter.start_date}
+              end={exp.frontmatter.end_date}
+              jobTitle={exp.frontmatter.role}
+              company={exp.frontmatter.company}
+              description={exp.frontmatter.summary}
+              icon={image.default}
+              modalId={`modal-${exp.frontmatter.company}`}
+            />
+          );
+        })
+      }
+    </div>
   </div>
 </div>
 

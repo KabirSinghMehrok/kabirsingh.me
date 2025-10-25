@@ -20,9 +20,8 @@ const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
 
 <a
   href={href}
-  class="relative inline-flex flex-row items-center text-sm font-sans py-0"
+  class="relative inline-flex flex-row items-center text-[16px] md:text-[18px] font-sans py-0"
   class:list={[className, { active: isActive }]}
-  style={`font-size: ${fontSize}`}
   {...props}
 >
   <slot />
