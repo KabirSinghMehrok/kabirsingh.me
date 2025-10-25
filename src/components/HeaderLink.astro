@@ -22,6 +22,8 @@ const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
   href={href}
   class="relative inline-flex flex-row items-center text-[16px] md:text-[18px] font-sans py-0"
   class:list={[className, { active: isActive }]}
+  target={linkType === "external" ? "_blank" : undefined}
+  rel={linkType === "external" ? "noopener noreferrer" : undefined}
   {...props}
 >
   <slot />
