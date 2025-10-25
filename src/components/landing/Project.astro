@@ -65,16 +65,20 @@ const {
         <div class="flex flex-row gap-2 shrink-0">
           {
             github_url && (
-              <Link href={github_url} fontSize="15px" linkType="external">
-                github
-              </Link>
+              <div onclick="event.stopPropagation()">
+                <Link href={github_url} fontSize="15px" linkType="external">
+                  github
+                </Link>
+              </div>
             )
           }
           {
             live_url && (
-              <Link href={live_url} fontSize="15px" linkType="external">
-                live link
-              </Link>
+              <div onclick="event.stopPropagation()">
+                <Link href={live_url} fontSize="15px" linkType="external">
+                  live link
+                </Link>
+              </div>
             )
           }
         </div>
