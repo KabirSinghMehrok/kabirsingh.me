@@ -1,46 +1,69 @@
 ---
+import { Image } from "astro:assets";
 import InteractiveImages from "./InteractiveImages.astro";
 import Pill from "./Pill.astro";
+import kabirPhoto from "/src/assets/kabir_photo_sketch.png";
 ---
 
 <div
-  class="flex flex-col min-h-[400px] md:min-h-[500px] justify-center text-[30px] md:text-[40px]"
+  class="flex flex-col-reverse md:flex-row min-h-[400px] md:min-h-[500px] justify-center items-start md:items-center text-[30px] md:text-[40px] gap-8"
 >
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4 flex-1">
+    <!-- <div class="flex-shrink-0">
+      <Image
+        src={kabirPhoto}
+        alt="Kabir Singh Mehrok - Profile sketch"
+        width={150}
+        loading="eager"
+        format="webp"
+        class="mb-10"
+      />
+    </div> -->
     <div
-      class="flex flex-row flex-wrap items-center gap-2 source-serif-4-super-light leading-10"
+      class="flex flex-row flex-wrap gap-2 items-center source-serif-4-super-light leading-10"
     >
       Hi,
       <Pill
         mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp"
         fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif"
+        isTextOut={false}
       />
       I am <span class="source-serif-4-regular-italic">Kabir Singh Mehrok</span>
     </div>
     <div
       class="flex flex-row items-center gap-2 flex-wrap source-serif-4-super-light leading-16"
     >
-      <span>I blend</span>
+      I blend
       <Pill
         text="software"
         mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47e/512.webp"
         fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47e/512.gif"
-        isTextOut="true"
+        isTextOut={true}
       />
-      <span>and</span>
+      and
       <Pill
         text="design"
         mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/270f_fe0f/512.webp"
         fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/270f_fe0f/512.gif"
-        isTextOut="true"
-      />
-      <span>to build products with</span>
+        isTextOut={true}
+      /> to build products with
       <Pill
         text="impact"
         mainImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4aa/512.webp"
         fallbackImage="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4aa/512.gif"
-        isTextOut="true"
+        isTextOut={true}
       />
     </div>
+  </div>
+
+  <div class="flex-shrink-0">
+    <Image
+      src={kabirPhoto}
+      alt="Kabir Singh Mehrok - Profile sketch"
+      width={150}
+      loading="eager"
+      format="webp"
+      class="mr-8"
+    />
   </div>
 </div>
