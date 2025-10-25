@@ -15,7 +15,7 @@ type Props = HTMLAttributes<"div"> & {
   technologies: string[];
   modalId: string;
   showUpperBorder: boolean;
-  project_image: string;
+  project_image: ImageMetadata;
 };
 
 const {
@@ -43,7 +43,7 @@ const {
     {console.log("project_image", project_image)}
     {
       project_image ? (
-        <img
+        <Image
           src={project_image}
           alt={title}
           class="object-contain max-h-[120px] w-auto h-[120px] md:h-[120px] shadow-sm"
@@ -65,14 +65,14 @@ const {
         <div class="flex flex-row gap-2 shrink-0">
           {
             github_url && (
-              <Link href={github_url} fontSize="15px">
+              <Link href={github_url} fontSize="15px" linkType="external">
                 github
               </Link>
             )
           }
           {
             live_url && (
-              <Link href={live_url} fontSize="15px">
+              <Link href={live_url} fontSize="15px" linkType="external">
                 live link
               </Link>
             )
