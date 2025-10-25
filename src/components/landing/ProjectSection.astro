@@ -2,6 +2,9 @@
 import Project from "./Project.astro";
 import ProjectModal from "./ProjectModal.astro";
 const project = await Astro.glob("../../data/projects/*.md");
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/project_mockup/*",
+);
 ---
 
 <div class="flex flex-col">
@@ -11,8 +14,12 @@ const project = await Astro.glob("../../data/projects/*.md");
   {
     project
       .filter((exp) => !exp.frontmatter?.isHidden)
-      .map((exp, idx) => (
-        <>
+      .map(async (exp, idx) => {
+        const image =
+          await images[
+            `/src/assets/project_mockup/${exp.frontmatter.project_image}`
+          ]();
+        return (
           <Project
             title={exp.frontmatter.title}
             tagline={exp.frontmatter.tagline}
@@ -25,10 +32,10 @@ const project = await Astro.glob("../../data/projects/*.md");
             iconEmoji={exp.frontmatter.iconEmoji}
             modalId={`modal-${exp.frontmatter.title}`}
             showUpperBorder={idx !== 0}
-            project_image={exp.frontmatter.project_image}
+            project_image={image.default}
           />
-        </>
-      ))
+        );
+      })
   }
 </div>
 
@@ -55,14 +62,14 @@ const project = await Astro.glob("../../data/projects/*.md");
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Function to open a modal
-    const openModal = (modal) => {
+    const openModal = (modal: Element | null) => {
       if (modal == null) return;
       modal.classList.add("is-open");
       document.body.style.overflow = "hidden"; // Prevent background scrolling
     };
 
     // Function to close a modal
-    const closeModal = (modal) => {
+    const closeModal = (modal: Element | null) => {
       if (modal == null) return;
       modal.classList.remove("is-open");
       document.body.style.overflow = "auto"; // Restore scrolling
@@ -76,8 +83,10 @@ const project = await Astro.glob("../../data/projects/*.md");
       trigger.addEventListener("click", (event) => {
         event.preventDefault();
         const modalId = trigger.getAttribute("data-modalTrigger");
-        const modal = document.getElementById(modalId);
-        openModal(modal);
+        if (modalId) {
+          const modal = document.getElementById(modalId);
+          openModal(modal);
+        }
       });
     });
 

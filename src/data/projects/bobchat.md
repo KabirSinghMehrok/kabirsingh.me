@@ -7,7 +7,7 @@ technologies: ["React.js", "HTML/CSS", "Node.js", "MySQL"]
 role: "Developer"
 github_url: ""
 live_url: ""
-project_image: "/project_mockup/bobchat.png"
+project_image: "bobchat.png"
 ---
 
 ### Overview

@@ -7,7 +7,7 @@ technologies: ["Typescript", "ProseMirror", "OpenRouter"]
 role: "Lead Developer"
 github_url: "https://github.com/KabirSinghMehrok/simply-markdown"
 live_url: "https://simply-markdown.netlify.app/"
-project_image: "/project_mockup/simply-markdown.png"
+project_image: "simply-markdown.png"
 ---
 
 ### Overview

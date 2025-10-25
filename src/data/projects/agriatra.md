@@ -7,7 +7,7 @@ technologies: ["HTML/CSS", "Django"]
 role: "Lead Developer"
 github_url: "https://github.com/KabirSinghMehrok/agriatra"
 live_url: ""
-project_image: "/project_mockup/agriatra.png"
+project_image: "agriatra.png"
 ---
 
 ### Overview
