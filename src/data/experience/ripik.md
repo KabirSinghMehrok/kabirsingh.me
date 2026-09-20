@@ -3,7 +3,7 @@ company: "Ripik.AI"
 role: "Frontend Engineer"
 location: "Noida, Uttar Pradesh, India"
 start_date: "Jul 2024"
-end_date: "Present"
+end_date: "Dec 2025"
 summary: "Engineered and optimized web applications and dashboards for 12+ AI-powered industrial applications, collaborating with global clients in the steel and cement sectors."
 technologies: ["React.js", "JavaScript", "HTML", "Tailwind CSS", "Python (Programming Language)", "WebSocket", "Responsive Web Design", "User Interface Design", "Git", "Docker Products", "Github actions", "Podman", "Bash", "Linux", "Webhook", "Mixpanel", "AWS Amplify", "User Experience (UX)", "Test-Driven Development", "Socket.io", "Playwright", "Spring Framework", "Sonarqube", "Cascading Style Sheets (CSS)", "Vite", "Core Java", "Slack"]
 iconUrl: 'ripik.jpg'
